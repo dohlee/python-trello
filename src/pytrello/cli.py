@@ -45,7 +45,7 @@ def configure(args):
     """Configure pytrello with Trello API key and token.
     """
     package_dir = os.path.dirname(pytrello.__path__[0])
-    config_json = os.path.join(package_dir, '..', 'share', 'config.json')
+    config_json = os.path.join(package_dir, '..', '..', 'share', 'pytrello', 'config.json')
     config_dict = dict()
 
     config_dict['key'] = input('Your Trello API key: ')
