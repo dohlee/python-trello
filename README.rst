@@ -10,11 +10,9 @@ Overview
     * - docs
       - |docs|
     * - tests
-      - | |travis| |appveyor| |requires|
-        | |coveralls| |codecov|
+      - | |travis| |appveyor| |requires| |coveralls| |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
 
 .. |docs| image:: https://readthedocs.org/projects/python-trello/badge/?style=flat
     :target: https://readthedocs.org/projects/python-trello
@@ -43,10 +41,6 @@ Overview
 .. |version| image:: https://img.shields.io/pypi/v/pytrello.svg
     :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/pytrello
-
-.. |commits-since| image:: https://img.shields.io/github/commits-since/dohlee/python-trello/v0.1.0.svg
-    :alt: Commits since latest release
-    :target: https://github.com/dohlee/python-trello/compare/v0.1.0...master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/pytrello.svg
     :alt: PyPI Wheel
