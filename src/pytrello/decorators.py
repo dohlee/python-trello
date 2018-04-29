@@ -20,7 +20,7 @@ to configure your key and token for Trello API.
 
 def get_key_and_token():
     package_dir = os.path.dirname(pytrello.__path__[0])
-    config_json = os.path.join(package_dir, '..', '..', 'share', 'pytrello', 'config.json')
+    config_json = os.path.join(package_dir, 'pytrello', 'config.json')
     try:
         config_dict = json.loads(open(config_json).read())
 

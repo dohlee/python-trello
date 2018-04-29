@@ -1,4 +1,4 @@
-share/pytrello/config.json
+src/config.json
 
 *.py[cod]
 
