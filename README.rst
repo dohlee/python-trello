@@ -57,7 +57,7 @@ Overview
 
 .. end-badges
 
-Python wrapper for Trello API. Version v0.1.4.
+Python wrapper for Trello API. Version v0.1.5.
 
 * Free software: MIT license
 

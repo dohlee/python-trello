@@ -31,7 +31,7 @@ def read(*names, **kwargs):
 
 setup(
     name='pytrello',
-    version='0.1.4',
+    version='0.1.5',
     license='MIT license',
     description='Python wrapper for Trello API.',
     long_description='%s\n%s' % (
