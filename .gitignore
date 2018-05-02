@@ -1,4 +1,4 @@
-src/config.json
+src/pytrello/config.json
 
 *.py[cod]
 
@@ -29,6 +29,7 @@ pip-log.txt
 
 # Unit test / coverage reports
 .coverage
+.coveralls.yml
 .tox
 .coverage.*
 nosetests.xml

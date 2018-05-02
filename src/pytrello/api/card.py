@@ -24,6 +24,12 @@ def get_card_id(board_name, card_name):
     sys.exit('Card not found: %s' % card_name)
 
 
+def add_label(card_id, label_id):
+    url = 'https://api.trello.com/1/cards/{card_id}/idLabels'
+    payload = {'value': label_id}
+    return request.post(url, card_id=card_id, payload=payload)
+
+
 def add_comment(card_id, comment=None):
     url = 'https://api.trello.com/1/cards/{card_id}/actions/comments'
     now = datetime.now()
