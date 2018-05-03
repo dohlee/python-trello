@@ -30,6 +30,11 @@ def add_label(card_id, label_id):
     return request.post(url, card_id=card_id, payload=payload)
 
 
+def delete_label(card_id, label_id):
+    url = 'https://api.trello.com/1/cards/{card_id}/idLabels/{label_id}'
+    return request.delete(url, card_id=card_id, label_id=label_id)
+
+
 def add_comment(card_id, comment=None):
     url = 'https://api.trello.com/1/cards/{card_id}/actions/comments'
     now = datetime.now()
