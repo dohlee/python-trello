@@ -18,7 +18,7 @@ def post(url, payload=None, **kwargs):
 @authorized
 @as_json
 def delete(url, payload=None, **kwargs):
-    return requests.delete(url.format(**kwargs))
+    return requests.delete(url.format(**kwargs), data=payload)
 
 
 @authorized
