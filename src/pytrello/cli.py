@@ -138,6 +138,23 @@ def addlabel(args):
     card_api.add_label(card_id, label_id)
 
 
+@subcommand([
+    argument_board(),
+    argument_card(),
+    argument_string('-n', '--name', required=True)
+])
+def deletelabel(args):
+    """Delete label from your board.
+    """
+    board_name = ' '.join(args.board)
+    card_name = ' '.join(args.card)
+    label_name = ' '.join(args.name)
+
+    label_id = board_api.get_label_id(board_name, label_name)
+    card_id = card_api.get_card_id(board_name, card_name)
+    card_api.delete_label(card_id, label_id)
+
+
 def main(args=None):
     args = parser.parse_args(args=args)
     try:

@@ -30,9 +30,9 @@ Overview
     :alt: Requirements Status
     :target: https://requires.io/github/dohlee/python-trello/requirements/?branch=master
 
-.. |coveralls| image:: https://coveralls.io/repos/dohlee/python-trello/badge.svg?branch=master&service=github
+.. |coveralls| image:: https://coveralls.io/repos/dohlee/python-trello/badge.svg?branch=master
     :alt: Coverage Status
-    :target: https://coveralls.io/r/dohlee/python-trello
+    :target: https://coveralls.io/github/dohlee/python-trello?branch=master
 
 .. |codecov| image:: https://codecov.io/github/dohlee/python-trello/coverage.svg?branch=master
     :alt: Coverage Status
