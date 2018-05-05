@@ -1,0 +1,7 @@
+# Define trello apis.
+# Definition should include
+# 1. request_type ('GET', 'POST', 'PUT', 'DELETE')
+# 2. uri (/boards/{board_id})
+get_board:
+    request_type: 'GET'
+    uri: '/boards/{board_id}'
