@@ -17,11 +17,14 @@ Why does this file exist, and why not put this in __main__?
 import argparse
 import json
 import os
+import sys
 import pytrello
 import pytrello.api.util as util
 import pytrello.api.board as board_api
 import pytrello.api.card as card_api
 import pytrello.api.label as label_api
+
+from datetime import datetime, timedelta
 
 
 # Create the top-level parser.
@@ -52,6 +55,10 @@ def argument_comment():
 
 def argument_string(short, long, default=None, required=False):
     return argument(short, long, nargs='+', default=default, required=required)
+
+
+def argument_int(short, long, default=None, required=False):
+    return argument(short, long, type=int, default=default, required=required)
 
 
 def subcommand(args=[], parent=subparsers):
@@ -200,9 +207,32 @@ def deletelabel(args):
     card_api.delete_label(card_id, label_id)
 
 
+@subcommand([
+    argument_board(),
+    argument_card(),
+    argument_string('-D', '--duedate'),
+    argument_int('-d', '--duein'),
+])
+def setdue(args):
+    """Set due to your card.
+    """
+    board_name = ' '.join(args.board)
+    card_name = ' '.join(args.card)
+    if args.duedate is not None:
+        due_date = ' '.join(args.due)
+    elif args.duein is not None:
+        d = datetime.now() + timedelta(days=args.duein)
+        due_date = '%d-%d-%d' % (d.year, d.month, d.day)
+    else:
+        parser.print_help()
+        sys.exit(1)
+
+    util.set_due_date(board_name, card_name, due_date)
+
+
 def main(args=None):
     args = parser.parse_args(args=args)
-    # try:
-    args.func(args)
-    # except AttributeError:
-        # parser.print_help()
+    try:
+        args.func(args)
+    except AttributeError:
+        parser.print_help()

@@ -104,3 +104,8 @@ def mark_as_not_done(board_name, card_name, comment_):
             % (now.year, now.month, now.day, now.hour, now.minute)
         card_api.add_card_comment(card_id=card_id,
                                   text='%s Reverted completion.' % timestamp)
+
+
+def set_due_date(board_name, card_name, due_date):
+    card_id = get_card_id(board_name=board_name, card_name=card_name)
+    card_api.update_card_due(card_id=card_id, due=due_date)

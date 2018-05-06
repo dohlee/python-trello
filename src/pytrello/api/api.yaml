@@ -210,6 +210,10 @@ update_card_as_not_done:
   request_type: PUT
   uri: /cards/{card_id}/dueComplete?value=false
 
+update_card_due:
+  request_type: PUT
+  uri: /cards/{card_id}/due?value={due}
+
 update_card_comment:
   request_type: PUT
   uri: /cards/{card_id}/actions/{action_id}/comments

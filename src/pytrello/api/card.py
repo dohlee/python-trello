@@ -99,6 +99,11 @@ def update_card_as_not_done(card_id):
 
 
 @decorators.basic_api
+def update_card_due(card_id, due):
+    pass
+
+
+@decorators.basic_api
 def update_card_comment(card_id, action_id):
     pass
 
