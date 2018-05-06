@@ -18,6 +18,7 @@ import argparse
 import json
 import os
 import pytrello
+import pytrello.api.util as util
 import pytrello.api.board as board_api
 import pytrello.api.card as card_api
 import pytrello.api.label as label_api
@@ -39,6 +40,10 @@ def argument_board():
 
 def argument_card():
     return argument('-c', '--card', nargs='+', required=True)
+
+
+def argument_list():
+    return argument('-l', '--list', nargs='+', required=True)
 
 
 def argument_comment():
@@ -75,6 +80,34 @@ def configure(args):
 
 @subcommand([
     argument_board(),
+    argument_list(),
+    argument_card(),
+])
+def createcard(args):
+    """Create a new card to your board.
+    """
+    board_name = ' '.join(args.board)
+    list_name = ' '.join(args.list)
+    card_name = ' '.join(args.card)
+
+    util.create_card(board_name, list_name, card_name)
+
+
+@subcommand([
+    argument_board(),
+    argument_card(),
+])
+def deletecard(args):
+    """Delete a card from your board.
+    """
+    board_name = ' '.join(args.board)
+    card_name = ' '.join(args.card)
+
+    util.delete_card(board_name, card_name)
+
+
+@subcommand([
+    argument_board(),
     argument_card(),
     argument_comment()
 ])
@@ -85,8 +118,7 @@ def comment(args):
     card_name = ' '.join(args.card)
     comment_ = ' '.join(args.comment) if args.comment is not None else None
 
-    card_id = card_api.get_card_id(board_name, card_name)
-    card_api.add_comment(card_id, comment_)
+    util.add_comment(board_name, card_name, comment_)
 
 
 @subcommand([
@@ -101,8 +133,22 @@ def done(args):
     card_name = ' '.join(args.card)
     comment_ = ' '.join(args.comment) if args.comment is not None else None
 
-    card_id = card_api.get_card_id(board_name, card_name)
-    card_api.mark_as_done(card_id, comment_)
+    util.mark_as_done(board_name, card_name, comment_)
+
+
+@subcommand([
+    argument_board(),
+    argument_card(),
+    argument_comment()
+])
+def notdone(args):
+    """Mark your trello card as not done.
+    """
+    board_name = ' '.join(args.board)
+    card_name = ' '.join(args.card)
+    comment_ = ' '.join(args.comment) if args.comment is not None else None
+
+    util.mark_as_not_done(board_name, card_name, comment_)
 
 
 @subcommand([
@@ -117,8 +163,9 @@ def createlabel(args):
     name = ' '.join(args.name)
     color = ' '.join(args.color)
 
-    board_id = board_api.get_board_id(board_name)
-    label_api.create_label(name=name, color=color, board_id=board_id)
+    util.create_label(board_name=board_name,
+                      label_name=name,
+                      label_color=color)
 
 
 @subcommand([
@@ -127,15 +174,13 @@ def createlabel(args):
     argument_string('-n', '--name', required=True)
 ])
 def addlabel(args):
-    """Add new label to your board.
+    """Add new label to your card.
     """
     board_name = ' '.join(args.board)
     card_name = ' '.join(args.card)
     label_name = ' '.join(args.name)
 
-    label_id = board_api.get_label_id(board_name, label_name)
-    card_id = card_api.get_card_id(board_name, card_name)
-    card_api.add_label(card_id, label_id)
+    util.add_label(board_name, card_name, label_name)
 
 
 @subcommand([
@@ -157,7 +202,7 @@ def deletelabel(args):
 
 def main(args=None):
     args = parser.parse_args(args=args)
-    try:
-        args.func(args)
-    except AttributeError:
-        parser.print_help()
+    # try:
+    args.func(args)
+    # except AttributeError:
+        # parser.print_help()
