@@ -346,3 +346,28 @@ create_label:
 delete_label:
   request_type: DELETE
   uri: /labels/{label_id}
+
+get_webhook:
+  request_type: GET
+  uri: /webhooks/{webhook_id}
+
+get_webhook_field:
+  request_type: GET
+  uri: /webhooks/{webhook_id}/{field}
+
+update_webhook:
+  request_type: PUT
+  uri: /webhooks/{webhook_id}
+
+create_webhook:
+  request_type: POST
+  uri: /webhooks
+  parameters:
+    - description
+    - callbackURL
+    - idModel
+    - active
+
+delete_webhook:
+  request_type: DELETE
+  uri: /webhooks/{webhook_id}

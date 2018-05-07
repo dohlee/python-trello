@@ -230,6 +230,23 @@ def setdue(args):
     util.set_due_date(board_name, card_name, due_date)
 
 
+@subcommand([
+    argument_board(),
+    argument_list(),
+    argument_string('-u', '--url', required=True),
+    argument_string('-d', '--description', default=None),
+])
+def lwebhook(args):
+    """Create webhook for a list.
+    """
+    board_name = ' '.join(args.board)
+    list_name = ' '.join(args.list)
+    url = ' '.join(args.url)
+    description = ' '.join(args.description) if args.description is not None else None
+
+    util.create_webhook_for_list(board_name, list_name, url, description)
+
+
 def main(args=None):
     args = parser.parse_args(args=args)
     try:
