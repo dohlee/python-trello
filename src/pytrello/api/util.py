@@ -4,6 +4,7 @@ import sys
 from pytrello.api import board as board_api
 from pytrello.api import card as card_api
 from pytrello.api import label as label_api
+from pytrello.api import webhook as webhook_api
 
 
 def get_board_id(board_name):
@@ -109,3 +110,11 @@ def mark_as_not_done(board_name, card_name, comment_):
 def set_due_date(board_name, card_name, due_date):
     card_id = get_card_id(board_name=board_name, card_name=card_name)
     card_api.update_card_due(card_id=card_id, due=due_date)
+
+
+def create_webhook_for_list(board_name, list_name, callback_url, description=None):
+    list_id = get_list_id(board_name=board_name, list_name=list_name)
+
+    webhook_api.create_webhook(callbackURL=callback_url,
+                               idModel=list_id,
+                               description=description)
